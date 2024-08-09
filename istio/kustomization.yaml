@@ -1,4 +1,4 @@
-resources: []
-#  - base.yaml
-#  - istiod.yaml
-#  - gateway.yaml
+resources:
+  - base.yaml
+  - istiod.yaml
+  - gateway.yaml
