@@ -1,3 +1,11 @@
 resources:
-- bookinfo.yaml
-- networking.yaml
+  - bookinfo.yaml
+  - networking.yaml
+patches:
+  - target:
+      kind: Gateway
+      name: bookinfo-gateway
+    patch: |-
+      - op: replace
+        path: /spec/servers/0/hosts/0/
+        value: bookinfo.com
