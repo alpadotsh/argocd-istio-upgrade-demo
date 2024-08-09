@@ -1,0 +1,49 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: istio-gateway
+spec:
+  goTemplate: true
+  goTemplateOptions: [ "missingkey=error" ]
+  generators:
+    - list:
+        elements:
+          - targetRevision: 1.22.3
+            destination:
+              name: in-cluster
+              namespace: istio-system
+              revision: current
+#          - targetRevision: 1.21.5
+#            destination:
+#              name: in-cluster
+#              namespace: istio-system
+#              revision: canary
+  template:
+    metadata:
+      name: '{{.destination.name}}-{{.destination.revision}}-istio-ingressgateway'
+      namespace: argocd
+    spec:
+      project: default
+      source:
+        repoURL: https://istio-release.storage.googleapis.com/charts
+        chart: gateway
+        targetRevision: '{{.targetRevision}}'
+        helm:
+          valuesObject:
+            revision: '{{.destination.revision}}'
+            replicaCount: 5
+            autoscaling:
+              enabled: false
+      destination:
+        name: '{{.destination.name}}'
+        namespace: '{{.destination.namespace}}'
+      ignoreDifferences:
+        - group: "admissionregistration.k8s.io"
+          kind: "ValidatingWebhookConfiguration"
+          jsonPointers:
+            - /webhooks/0/failurePolicy # this changed later by istiod
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+          - ApplyOutOfSyncOnly=true
+          - RespectIgnoreDifferences=true
