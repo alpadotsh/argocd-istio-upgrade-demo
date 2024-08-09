@@ -1,0 +1,43 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: bookinfo
+  namespace: argocd
+spec:
+  destination:
+    namespace: bookinfo
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: bookinfo
+    repoURL: https://github.com/alpadotsh/argocd-istio-upgrade-demo.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: true
+    syncOptions:
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: bookinfo-canary
+  namespace: argocd
+spec:
+  destination:
+    namespace: bookinfo-canary
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: bookinfo
+    repoURL: https://github.com/alpadotsh/argocd-istio-upgrade-demo.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: true
+    syncOptions:
+      - CreateNamespace=true
