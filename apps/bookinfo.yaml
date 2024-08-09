@@ -19,6 +19,9 @@ spec:
             name: bookinfo-gateway
           patch: |-
             - op: replace
+              path: /spec/selector/istio
+              value: in-cluster-current-istio-ingressgateway
+            - op: replace
               path: /spec/servers/0/hosts/0
               value: bookinfo.com
   syncPolicy:
@@ -49,6 +52,9 @@ spec:
             kind: Gateway
             name: bookinfo-gateway
           patch: |-
+            - op: replace
+              path: /spec/selector/istio
+              value: in-cluster-current-istio-ingressgateway
             - op: replace
               path: /spec/servers/0/hosts/0
               value: canary.bookinfo.com
