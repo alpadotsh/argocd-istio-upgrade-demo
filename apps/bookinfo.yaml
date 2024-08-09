@@ -19,8 +19,8 @@ spec:
             name: bookinfo-gateway
           patch: |-
             - op: replace
-              path: /spec/servers/0/hosts/0/
-              value: bookinfo.com
+              path: /spec/servers/0/hosts
+              value: [bookinfo.com]
   syncPolicy:
     automated:
       prune: true
@@ -50,8 +50,8 @@ spec:
             name: bookinfo-gateway
           patch: |-
             - op: replace
-              path: /spec/servers/0/hosts/0/
-              value: canary.bookinfo.com
+              path: /spec/servers/0/hosts
+              value: [canary.bookinfo.com]
   syncPolicy:
     automated:
       prune: true
