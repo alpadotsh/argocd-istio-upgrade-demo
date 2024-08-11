@@ -5,8 +5,12 @@ configMapGenerator:
       labels:
         grafana_dashboard: "1"
     files:
-      - istio-extension-dashboard.json
       - istio-mesh-dashboard.json
       - istio-performance-dashboard.json
       - pilot-dashboard.json
+  - name: istio-grafana-service-dashboard
+    options:
+      labels:
+        grafana_dashboard: "1"
+    files:
       - istio-service-dashboard.json
