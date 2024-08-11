@@ -1,0 +1,12 @@
+namespace: monitoring
+configMapGenerator:
+  - name: istio-grafana-dashboards
+    options:
+      labels:
+        grafana_dashboard: "1"
+    files:
+      - istio-extension-dashboard.json
+      - istio-mesh-dashboard.json
+      - istio-performance-dashboard.json
+      - pilot-dashboard.json
+      - istio-service-dashboard.json

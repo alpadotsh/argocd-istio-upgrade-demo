@@ -4,3 +4,4 @@ resources:
   - gateway.yaml
   - servicemonitor.yaml
   - proxy-podmonitor.yaml
+  - dashboards
