@@ -12,7 +12,7 @@ spec:
             destination:
               name: in-cluster
               revision: current
-          - targetRevision: 1.21.5
+          - targetRevision: 1.22.3
             destination:
               name: in-cluster
               revision: canary
