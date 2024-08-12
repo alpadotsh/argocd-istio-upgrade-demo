@@ -17,7 +17,7 @@ spec:
 apiVersion: networking.istio.io/v1
 kind: VirtualService
 metadata:
-  name: bookinfo
+  name: grafana
   namespace: monitoring
 spec:
   hosts:
@@ -30,6 +30,6 @@ spec:
             prefix: /
       route:
         - destination:
-            host: kube-prometheus-stack-grafana.monitoring.svc
+            host: kube-prometheus-stack-grafana.monitoring
             port:
               number: 80
