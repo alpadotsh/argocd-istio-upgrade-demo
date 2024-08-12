@@ -10,7 +10,11 @@ spec:
     chart: kube-prometheus-stack
     targetRevision: 61.7.2
     helm:
-      valuesObject: {}
+      valuesObject:
+        grafana:
+          ini:
+            server:
+              domain: grafana.qrunio.dev
   destination:
     name: in-cluster
     namespace: monitoring
