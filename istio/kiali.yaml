@@ -17,6 +17,8 @@ spec:
           spec:
             auth:
               strategy: "anonymous"
+            deployment:
+              accessible_namespaces: [ istio-system ]
             external_services:
               prometheus:
                 url: "http://kube-prometheus-stack-prometheus.monitoring:9090/"
