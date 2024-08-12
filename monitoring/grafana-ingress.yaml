@@ -53,5 +53,8 @@ metadata:
 spec:
   secretName: grafana-cert
   commonName: grafana.qrunio.dev
+  issuerRef:
+    name: selfsigned-cluster-issuer
+    kind: ClusterIssuer
   dnsNames:
     - grafana.qrunio.dev
