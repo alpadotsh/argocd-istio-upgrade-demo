@@ -10,7 +10,8 @@ spec:
     chart: cert-manager
     targetRevision: 1.15.2
     helm:
-      valuesObject: { }
+      valuesObject:
+        installCRDs: true
   destination:
     name: in-cluster
     namespace: cert-manager
