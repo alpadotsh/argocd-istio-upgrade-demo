@@ -12,7 +12,7 @@ spec:
     helm:
       valuesObject:
         grafana:
-          ini:
+          grafana.ini:
             server:
               domain: grafana.qrunio.dev
   destination:
