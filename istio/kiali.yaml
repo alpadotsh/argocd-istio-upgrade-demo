@@ -29,7 +29,7 @@ spec:
               grafana:
                 enabled: true
                 in_cluster_url: "http://kube-prometheus-stack-grafana.monitoring/"
-                url: "http://kube-prometheus-stack-grafana.monitoring/"
+                url: https://grafana.qrunio.dev
   
   destination:
     name: in-cluster
