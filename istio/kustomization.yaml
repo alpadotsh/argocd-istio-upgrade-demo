@@ -5,3 +5,4 @@ resources:
   - servicemonitor.yaml
   - proxy-podmonitor.yaml
   - dashboards
+  - istio-ingress-telemetry.yaml
