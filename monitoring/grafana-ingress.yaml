@@ -14,7 +14,8 @@ spec:
       hosts:
         - grafana.qrunio.dev
       tls:
-        httpsRedirect: false
+        mode: SIMPLE
+        credentialName: grafana-cert
 ---
 apiVersion: networking.istio.io/v1
 kind: VirtualService
@@ -35,3 +36,14 @@ spec:
             host: kube-prometheus-stack-grafana.monitoring.svc.cluster.local
             port:
               number: 80
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: grafana
+  namespace: istio-system
+spec:
+  secretName: grafana-cert
+  commonName: grafana.qrunio.dev
+  dnsNames:
+    - grafana.qrunio.dev
