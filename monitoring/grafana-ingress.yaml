@@ -14,6 +14,14 @@ spec:
       hosts:
         - grafana.qrunio.dev
       tls:
+        httpsRedirect: true
+    - port:
+        number: 443
+        name: https
+        protocol: HTTPS
+      hosts:
+        - grafana.qrunio.dev
+      tls:
         mode: SIMPLE
         credentialName: grafana-cert
 ---
@@ -45,8 +53,5 @@ metadata:
 spec:
   secretName: grafana-cert
   commonName: grafana.qrunio.dev
-  issuerRef:
-    name: selfsigned-cluster-issuer
-    kind: ClusterIssuer
   dnsNames:
     - grafana.qrunio.dev
