@@ -21,7 +21,7 @@ metadata:
   namespace: monitoring
 spec:
   hosts:
-    - grafana.qrunio.dev
+    - "*"
   gateways:
     - grafana
   http:
