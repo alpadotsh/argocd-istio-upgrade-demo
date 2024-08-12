@@ -20,12 +20,17 @@ spec:
             deployment:
               accessible_namespaces: [ istio-system ]
             external_services:
+              istio:
+                config_map_name: istio-current
+                istiod_deployment_name: istiod-current
+                istio_sidecar_injector_config_map_name: "istio-current-sidecar-injector"
               prometheus:
                 url: "http://kube-prometheus-stack-prometheus.monitoring:9090/"
               grafana:
                 enabled: true
                 in_cluster_url: "http://kube-prometheus-stack-grafana.monitoring/"
                 url: "http://kube-prometheus-stack-grafana.monitoring:3000/"
+  
   destination:
     name: in-cluster
     namespace: kiali-operator
