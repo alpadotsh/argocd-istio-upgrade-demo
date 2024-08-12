@@ -12,3 +12,8 @@ spec:
     path: operators
     repoURL: https://github.com/alpadotsh/argocd-istio-upgrade-demo.git
     targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: true
