@@ -18,7 +18,9 @@ spec:
             auth:
               strategy: "anonymous"
             deployment:
-              accessible_namespaces: [ istio-system, istioinaction, bookinfo, bookinfo-canary ]
+              view_only_mode: true
+              accessible_namespaces:
+                - "**"
             external_services:
               istio:
                 config_map_name: istio-current
