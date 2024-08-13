@@ -1,41 +1,42 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kiali
+  name: kiali-server
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://kiali.org/helm-charts
-    chart: kiali-operator
+    chart: kiali-server
     targetRevision: 1.88.0
     helm:
       valuesObject:
-        cr:
-          create: true
-          namespace: istio-system
-          spec:
-            auth:
-              strategy: "anonymous"
-            deployment:
-              view_only_mode: true
-              accessible_namespaces: [ "istio-system", "istioinaction", "bookinfo", "bookinfo-canary" ]
-            external_services:
-              istio:
-                config_map_name: istio-current
-                istiod_deployment_name: istiod-current
-                istio_sidecar_injector_config_map_name: istio-sidecar-injector-current
-              prometheus:
-                url: "http://kube-prometheus-stack-prometheus.monitoring:9090/"
-              grafana:
-                enabled: true
-                in_cluster_url: "http://kube-prometheus-stack-grafana.monitoring/"
-                url: https://grafana.qrunio.dev
+        auth:
+          strategy: "anonymous"
+        deployment:
+          view_only_mode: true
+          accessible_namespaces:
+            - "**"
+        external_services:
+          istio:
+            config_map_name: istio-current
+            istiod_deployment_name: istiod-current
+            istio_sidecar_injector_config_map_name: istio-sidecar-injector-current
+          prometheus:
+            url: "http://kube-prometheus-stack-prometheus.monitoring:9090/"
+          grafana:
+            enabled: true
+            in_cluster_url: "http://kube-prometheus-stack-grafana.monitoring/"
+            url: https://grafana.qrunio.dev
   
   destination:
     name: in-cluster
-    namespace: kiali-operator
+    namespace: kiali
   syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: true
     syncOptions:
       - CreateNamespace=true
       - ApplyOutOfSyncOnly=true
