@@ -2,7 +2,7 @@ resources:
   - base.yaml
   - istiod.yaml
   - gateway.yaml
-  - kiali.yaml
+#  - kiali.yaml
   - servicemonitor.yaml
   - proxy-podmonitor.yaml
   - dashboards
